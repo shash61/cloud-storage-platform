@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components{
+
+  
+  .btncontainer{
+    @apply flex items-center place-content-center p-2 space-x-2 cursor-pointer bg-gray-800 rounded-md hover:bg-gray-300 transition-all min-w-[80px]  hover:text-gray-600
+  }
+  
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
