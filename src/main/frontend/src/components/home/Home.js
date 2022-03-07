@@ -1,8 +1,11 @@
 import React from 'react'
+import TabsSection from '../tabssection/TabsSection'
 
 function Home() {
   return (
-    <div>Home</div>
+    <div>
+      <TabsSection/>
+    </div>
   )
 }
 
