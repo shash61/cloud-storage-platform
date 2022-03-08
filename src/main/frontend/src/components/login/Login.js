@@ -19,6 +19,8 @@ function Login() {
     })
   }
   return (
+    <div className="grid place-content-center">
+      
     <div className="p-4 text-gray-100 rounded-md w-[500px] mx-auto bg-slate-700">
        <form className="grid space-y-4" onSubmit={handleSubmit}>
          <input className="p-2 bg-transparent border-b focus:outline-none" type="text" placeholder="Enter Name" autoFocus={true} value={state.name || ""} onChange={(e)=>handleChange(e)} name="name" required={true} minLength={4} />
@@ -35,6 +37,7 @@ function Login() {
        </form>
         
         </div>
+    </div>
   )
 }
 
