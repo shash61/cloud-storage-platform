@@ -1,16 +1,34 @@
 import React from 'react'
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import useForm from '../../hooks/useForm';
+import { login } from '../../services/User';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserDetails } from '../../redux/actions/userActions';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [name,setName]=React.useState('')
-  const [password, setPassword]=React.useState('')
-  const [type, setType]=React.useState("password")
+  const {user}=useSelector(state=>state.userReducer || {})
+  const navigate=useNavigate()
+  
+  React.useEffect(()=>{
+    Object.values(user).length!==0 && navigate('/home')
+  },[user])
+  
 
+  const [type, setType]=React.useState("password")
+  const dispatch=useDispatch()
+  console.log(dispatch)
   const [state, handleChange, handleSubmit, allClear]=useForm(handleRegister)
   
   function handleRegister(){
-    console.log(state)
+    const newData={
+      ...state,
+      createdAt:new Date().toISOString(),
+      lastloginAt:new Date().toISOString()
+    };
+    console.log(newData);
+    dispatch(getUserDetails(newData))
+    // console.log(state)
   }
   
   function handleType(){
@@ -23,7 +41,7 @@ function Login() {
       
     <div className="p-4 text-gray-100 rounded-md w-[500px] mx-auto bg-slate-700">
        <form className="grid space-y-4" onSubmit={handleSubmit}>
-         <input className="p-2 bg-transparent border-b focus:outline-none" type="text" placeholder="Enter Name" autoFocus={true} value={state.name || ""} onChange={(e)=>handleChange(e)} name="name" required={true} minLength={4} />
+         <input className="p-2 bg-transparent border-b focus:outline-none" type="text" placeholder="Enter Name" autoFocus={true} value={state.username || ""} onChange={(e)=>handleChange(e)} name="username" required={true} minLength={4} />
            
          <div className='flex items-center justify-between border-b'>
          <input className= "w-full p-2 bg-transparent focus:outline-none" type={type} placeholder="Enter Password" value={state.password || ""} name="password"  onChange={(e)=>handleChange(e)} required={true}  minLength={8}/>

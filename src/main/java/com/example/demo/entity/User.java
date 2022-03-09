@@ -33,6 +33,21 @@ public class User {
        this.createdAt=createdAt;
        this.lastloginAt=lastloginAt;
     }
+    public User(Long id, String username, String password, Timestamp createdAt, Timestamp lastloginAt ){
+        this.id=id;
+        this.username=username;
+        this.password=password;
+        this.createdAt=createdAt;
+        this.lastloginAt=lastloginAt;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsername(){
         return username;

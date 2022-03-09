@@ -28,6 +28,7 @@ function SignUp() {
         console.log(res.data)
         if(res?.status===200 && res?.data){
            setBool(true)
+           allClear()
            setTimeout(()=>navigate('/login'),4000)
         }
 

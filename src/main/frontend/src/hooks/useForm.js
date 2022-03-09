@@ -1,7 +1,7 @@
 import React from "react";
 
 function useForm(handleRegister){
-    console.log(handleRegister)
+
     const [state, setState]=React.useState({})
     
     function handleSubmit(e){
