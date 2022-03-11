@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @RestController
 public class UserController {
@@ -17,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping("/api/{id}")
-    public Optional<User> test(@PathVariable("id") Long id){
+    public Optional<User> test(@PathVariable("id") UUID id){
 
         return userService.getAllUsers(id);
     }
@@ -27,13 +28,13 @@ public class UserController {
         return userService.testEquality(user);
     }
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PostMapping("/api/signup")
     public User registerUser(@RequestBody User user){
      return userService.addUser(user);
     };
 
-    @CrossOrigin(origins="http://localhost:3000")
+
     @PostMapping("/api/login")
     public User login(@RequestBody User user){
         System.out.println(user);

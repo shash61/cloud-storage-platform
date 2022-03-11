@@ -29,16 +29,7 @@ function Navbar() {
         <div className="flex items-center space-x-4" onClick={handleClick}>
           {
             Object.values(user).length===0 ? 
-            <>
-            <div className='btncontainer' data-name="signup" >
-            <HowToRegIcon className='pointer-events-none '/>
-            <button className='pointer-events-none'>Register</button>
-            </div>
-            <div className="btncontainer" data-name="login">
-             <LoginIcon className="pointer-events-none "/>   
-            <button className='pointer-events-none'>Login</button>
-            </div>
-            </>
+            null
               :
               <div className="btncontainer">  
               <button className="pointer-events-none">Logout</button>  

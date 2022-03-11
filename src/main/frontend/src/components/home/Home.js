@@ -1,12 +1,24 @@
-import React from 'react'
-import TabsSection from '../tabssection/TabsSection'
+import React from "react";
+import { useSelector } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
+import Layout from "../layout/Layout";
+import TabsSection from "../tabssection/TabsSection";
 
 function Home() {
-  return (
-    <div>
-      <TabsSection/>
-    </div>
-  )
+  const { user } = useSelector((state) => state.userReducer || {});
+  const navigate = useNavigate();
+  const [loggedIn, setLoggedIn] = React.useState(false);
+
+  React.useEffect(() => {
+    if(Object.values(user).length !== 0) {
+      setLoggedIn(true) 
+
+    } else{
+      navigate('/auth')
+      setLoggedIn(false);
+    }
+  }, [user]);
+  return <Layout>{loggedIn ? <TabsSection /> : <Outlet />}</Layout>;
 }
 
-export default Home
+export default Home;

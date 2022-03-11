@@ -20,7 +20,7 @@ public class User {
 
     @Id
     @GeneratedValue
-    private Long id;
+    private UUID id;
     private String username;
     private String password;
     private Timestamp createdAt;
@@ -33,7 +33,7 @@ public class User {
        this.createdAt=createdAt;
        this.lastloginAt=lastloginAt;
     }
-    public User(Long id, String username, String password, Timestamp createdAt, Timestamp lastloginAt ){
+    public User(UUID id, String username, String password, Timestamp createdAt, Timestamp lastloginAt ){
         this.id=id;
         this.username=username;
         this.password=password;
@@ -41,11 +41,11 @@ public class User {
         this.lastloginAt=lastloginAt;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

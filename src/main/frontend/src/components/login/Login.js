@@ -10,9 +10,7 @@ function Login() {
   const {user}=useSelector(state=>state.userReducer || {})
   const navigate=useNavigate()
   
-  React.useEffect(()=>{
-    Object.values(user).length!==0 && navigate('/home')
-  },[user])
+  
   
 
   const [type, setType]=React.useState("password")

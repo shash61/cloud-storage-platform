@@ -6,7 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import ToastPopup from '../toastpopup/ToastPopup';
 
-function SignUp() {
+function SignUp({setValue}) {
   const [type, setType]=React.useState("password")
   const [bool, setBool]=React.useState(false)
   
@@ -28,14 +28,15 @@ function SignUp() {
         console.log(res.data)
         if(res?.status===200 && res?.data){
            setBool(true)
-           allClear()
-           setTimeout(()=>navigate('/login'),4000)
+           setTimeout(()=>setValue(1),3000)
+           
+          }
+          
+        }catch(err){
+          console.log(err)
         }
-
-      }catch(err){
-        console.log(err)
-      }
-    })();
+      })();
+      allClear()
     console.log(registerUser)     
     console.log(newData,'submit') 
     
