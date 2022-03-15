@@ -3,7 +3,7 @@ import axios from "axios";
 export async function registerUser(data) {
   console.log(data);
   try {
-    const res = await axios.post(`${process.env.REACT_APP_API_URL}/signup`, 
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, 
       data,
       {
           headers: {
@@ -21,7 +21,7 @@ export async function registerUser(data) {
 export async function login(data){
   console.log(data)
   try {
-    const res=await axios.post(`${process.env.REACT_APP_API_URL}/login`, 
+    const res=await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, 
      data, 
      {
       headers: {

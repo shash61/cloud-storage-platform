@@ -6,7 +6,7 @@ export const getUserDetails=(data)=>{
         try{
             const res=await login(data);
             console.log(res)
-            dispatch({type:'FETCH_USER_SUCCESSFUL', payload:res?.data})
+            res.status===200 && dispatch({type:'FETCH_USER_SUCCESSFUL', payload:res?.data})
         } catch(err){
             dispatch({type:'FETCH_USER_FAILED', payload:err.message})
         }
