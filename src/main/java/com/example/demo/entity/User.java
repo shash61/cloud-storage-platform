@@ -27,13 +27,14 @@ public class User {
     private String username;
 
     @NotBlank
+    @Email
+    @Size(max=50)
+    private String email;
+
+    @NotBlank
     @Size(max=120)
     private String password;
 
-     @NotBlank
-     @Email
-     @Size(max=50)
-    private String email;
 
     @ManyToMany(fetch=FetchType.LAZY)
     @JoinTable(name="user_roles",

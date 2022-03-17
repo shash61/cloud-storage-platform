@@ -16,8 +16,8 @@ function SignUp({setValue}) {
   function handleRegister(){
     const newData={
       ...state,
-      createdAt:new Date().toISOString(),
-      lastloginAt:new Date()
+      // createdAt:new Date().toISOString(),
+      // lastloginAt:new Date()
     };  
     // setBool(true)
     // console.log(state)

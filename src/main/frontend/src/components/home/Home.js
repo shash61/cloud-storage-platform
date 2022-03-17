@@ -10,9 +10,9 @@ function Home() {
   const [loggedIn, setLoggedIn] = React.useState(false);
 
   React.useEffect(() => {
-    if(Object.values(user).length !== 0) {
+    if(localStorage.getItem("token")!==null || undefined) {
       setLoggedIn(true) 
-
+      navigate('/')
     } else{
       navigate('/auth')
       setLoggedIn(false);
