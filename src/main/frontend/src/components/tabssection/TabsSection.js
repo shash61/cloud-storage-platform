@@ -55,15 +55,15 @@ export default function BasicTabs() {
         <Tab label="Credentials" {...a11yProps(1)} />
         </Tabs>
       </Box>
+      
       <TabPanel value={value} index={0}>
-          <div className="">
         <FileTab/>
-          </div>
-
       </TabPanel>
+
       <TabPanel value={value} index={1}>
         <CredentialsTab/>
       </TabPanel>
+
     </Box>
   );
 }

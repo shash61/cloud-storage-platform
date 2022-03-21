@@ -3,6 +3,8 @@ import { data } from "../../../data/fileData";
 import PaginateOperations from "../../paginateoperations/PaginateOperations";
 import PopUpOperations from "../../popupoperations/PopUpOperations";
 import DownloadIcon from '@mui/icons-material/Download';
+import AddComponent from "../../addcomponent/AddComponent";
+import AddModal from "../../addmodal/AddModal";
 console.log(data)
 const headings = ["File Name", "Author", "Uploaded At"];
 
@@ -38,13 +40,27 @@ const [page, setPage]=React.useState(1)
 }
 function FileTab() {
   const [active, setActive] = React.useState();
-
+  const [modalVisibility, setModalVisibility]=React.useState(false)
+  function handleAdd(){
+    console.log('adding file')
+  }
+  function handleVisibility(){
+    setModalVisibility(true)
+  }
+  function handleDisableVisibility(){
+    setModalVisibility(false)
+  }
+  const formData={
+    placeholderOne:''
+  }
   return (
-      <div>
-          
+    <div className="">
+        <div onClick={handleVisibility} className="grid place-content-end">
+          <AddComponent text="Add File" />
+          </div>  
     <table className="w-full text-gray-200 border-collapse ">
       <thead className="mb-4">
-        <tr >
+        <tr>
           {headings.map((head, i) => (
               <td className="p-4 font-semibold " key={i}>{head}</td>
               ))}
@@ -71,6 +87,7 @@ function FileTab() {
       </tbody>
     </table>
        <PaginateOperations/>
+       {modalVisibility ? <AddModal handleDisableVisibility={handleDisableVisibility} handleVisibility={handleVisibility} formData={formData}/>:null}
         </div>
   );
 }

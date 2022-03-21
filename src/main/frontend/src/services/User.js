@@ -11,9 +11,10 @@ export async function registerUser(data) {
         "Access-Control-Allow-Origin": "*",
       },
     });
+    console.log(res)
     return res;
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
   }
 }
 

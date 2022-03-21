@@ -18,6 +18,8 @@ function Home() {
       setLoggedIn(false);
     }
   }, [user]);
+
+  
   return <Layout>{loggedIn ? <TabsSection /> : <Outlet />}</Layout>;
 }
 
