@@ -1,7 +1,9 @@
 const initialState={
     credentials:[],
     error:'',
-    loading:true
+    loading:true,
+    currentPage:0,
+    totalPage:0,
 }
 
 export const credentialReducer=(state=initialState, action)=>{
@@ -11,6 +13,8 @@ export const credentialReducer=(state=initialState, action)=>{
             return {
                 ...state,
                 credentials:[],
+                currentPage:0,
+                totalPage:0,
                 loading:true,
                 error:''
             }
@@ -19,7 +23,9 @@ export const credentialReducer=(state=initialState, action)=>{
             return {
                 ...state,
                 loading:false,
-                credentials:payload,
+                credentials:payload.credentials,
+                currentPage:payload.currentPage,
+                totalPage:payload.totalPages,
                 error:''
             }
         case "FETCH_CREDENTIALS_FAILED":
@@ -27,6 +33,8 @@ export const credentialReducer=(state=initialState, action)=>{
                 ...state,
                 loading:false,
                 credentials:[],
+                currentPage:0,
+                totalPage:0,
                 error:payload
             }
 

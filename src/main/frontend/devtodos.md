@@ -7,3 +7,4 @@
 1. dont store password in redux only want {id, username, createdAt, lastLoginAt}
 
 
+# Make a modal wrapper for all small popupmodals

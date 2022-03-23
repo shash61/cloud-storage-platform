@@ -7,6 +7,9 @@ import com.example.demo.payload.response.MessageResponse;
 import com.example.demo.repository.CredentialRepository;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -44,15 +47,24 @@ public class CredentialController {
 
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/{userId}")
-    public ResponseEntity<?> getCredentials(@PathVariable UUID userId){
+    public ResponseEntity<?> getCredentials(@PathVariable UUID userId, @RequestParam(value = "pageNo") int page, @RequestParam(value="size") int size){
       Optional<User> user=userRepository.findById(userId);
       List<Credential> credentials=new ArrayList<>();
+        Pageable paging= PageRequest.of(page, size);
+        Page<Credential> pageCredentials;
       if(user.isPresent()) {
-          credentials = credentialRepository.findAllByUserId(userId);
+          pageCredentials = credentialRepository.findAllByUserId(userId,  paging);
+          credentials=pageCredentials.getContent();
           for(Credential c:credentials ){
               c.setUid(c.getUser().getId());
       }
-          return ResponseEntity.ok().body(credentials);
+          Map<String, Object> response = new HashMap<>();
+          response.put("credentials", credentials);
+          response.put("currentPage", pageCredentials.getNumber());
+          response.put("totalItems", pageCredentials.getTotalElements());
+          response.put("totalPages", pageCredentials.getTotalPages());
+
+          return ResponseEntity.ok().body(response);
       }
       else return ResponseEntity.ok(new MessageResponse("user id is not authorized"));
     }
@@ -73,7 +85,7 @@ public class CredentialController {
 
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/update/{credentialId}")
-    public ResponseEntity<?> updateCredentials(@PathVariable Long credentialId,@Valid @RequestBody Credential credential, @RequestParam UUID uuserId){
+    public ResponseEntity<?> updateCredentials(@PathVariable Long credentialId,@Valid @RequestBody Credential credential, @RequestParam UUID userId){
         Credential credential1=credentialRepository.findById(credentialId);
         Optional<User> user=userRepository.findById(userId);
 

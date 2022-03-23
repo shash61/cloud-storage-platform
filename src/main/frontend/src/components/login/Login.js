@@ -5,7 +5,8 @@ import { login } from '../../services/User';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUserDetails } from '../../redux/actions/userActions';
 import { useNavigate } from 'react-router-dom';
-import ToastPopup from '../toastpopup/ToastPopup';
+import { toast, ToastContainer } from 'react-toastify';
+// import ToastPopup from '../toastpopup/ToastPopup';
 
 function Login() {
   const {user}=useSelector(state=>state.userReducer || {})
@@ -19,15 +20,15 @@ function Login() {
   const dispatch=useDispatch()
   console.log(dispatch)
   const [state, handleChange, handleSubmit, allClear]=useForm(handleRegister)
-  function error(){
-    setBool(true)
-  }
+   function notify(text){
+     toast.dark(text)
+   }
   function handleRegister(){
     const newData={
       ...state,
     };
     console.log(newData);
-    dispatch(getUserDetails(newData, error))
+    dispatch(getUserDetails(newData, notify))
     // console.log(state)
   }
   
@@ -55,7 +56,7 @@ function Login() {
        </form>
         
         </div>
-        {bool && <ToastPopup text="the credentials entered are wrong" />}
+        <ToastContainer autoClose={2000}/>
     </div>
   )
 }

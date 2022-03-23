@@ -1,11 +1,11 @@
 import { getAllCredentials } from "../../services/Credential"
 
-export const getCredentials=(userId)=>{
+export const getCredentials=(userId, pageNo, size)=>{
     console.log(userId)
     return async(dispatch)=>{
         dispatch({type:'FETCH_CREDENTIALS_REQUEST'})
         try{ 
-           const res=await getAllCredentials(userId)
+           const res=await getAllCredentials(userId, pageNo, size)
            console.log(res)
            dispatch({type:"FETCH_CREDENTIALS_SUCCESS", payload:res?.data})
         }catch(err){

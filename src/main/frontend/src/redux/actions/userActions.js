@@ -1,6 +1,7 @@
 import { login } from "../../services/User"
 
 export const getUserDetails=(data, error)=>{
+    console.log(error)
     return async(dispatch)=>{
         dispatch({type:'FETCH_USER_REQUEST'})
         try{
@@ -11,7 +12,7 @@ export const getUserDetails=(data, error)=>{
                 localStorage.setItem("token",res?.data?.accessToken)
                 dispatch({type:'FETCH_USER_SUCCESSFUL', payload:res?.data})
             }
-            else error() 
+            else error("credentials are wrong") 
         } catch(err){
             
             dispatch({type:'FETCH_USER_FAILED', payload:err.message})

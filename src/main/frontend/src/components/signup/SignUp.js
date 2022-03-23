@@ -6,13 +6,16 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import ToastPopup from "../toastpopup/ToastPopup";
 
+
 function SignUp({ setValue }) {
   const [type, setType] = React.useState("password");
   const [bool, setBool] = React.useState(false);
 
   const [state, handleChange, handleSubmit, allClear] = useForm(handleRegister);
   const [error, setError] = React.useState(false);
-
+  const notify=(text)=>{
+    toast.dark(text)
+  }
   const navigate = useNavigate();
   console.log(handleSubmit);
   function handleRegister() {
@@ -25,20 +28,22 @@ function SignUp({ setValue }) {
     // console.log(state)
 
     (async () => {
-      try {
+     
         const res = await registerUser(newData);
         console.log(res);
-        if (res?.status === 200 && res?.data) {
-          setBool(true);
+        if (res?.status === 200 ) {
+          notify(res.data.message)
           setTimeout(() => setValue(1), 3000);
         }
-        if (res == undefined) {
-          setBool(true);
-          setError(true);
-        }
-      } catch (err) {
-        console.log(err);
-      }
+        
+          else{
+            console.log('error')
+          notify("user is already registered")
+          }// setBool(true);
+          // setError(true);
+        
+      // setBool(false)
+      // setError(false)
     })();
     allClear();
     console.log(registerUser);
@@ -106,11 +111,7 @@ function SignUp({ setValue }) {
           </div>
         </form>
       </div>
-      {bool && (
-        <ToastPopup
-          text={error ? "user is already taken" : "user is registered"}
-        />
-      )}
+     <ToastContainer autoClose={2000}/>
     </div>
   );
 }

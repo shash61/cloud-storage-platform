@@ -21,10 +21,10 @@ export async function addCredential(data, userId) {
   }
 }
 
-export async function getAllCredentials(userId) {
+export async function getAllCredentials(userId, pageNo) {
   try {
     const res = await axios.get(
-      `${process.env.REACT_APP_API_URL}/test/credentials/${userId}`,
+      `${process.env.REACT_APP_API_URL}/test/credentials/${userId}?pageNo=${pageNo || 0}&size=2`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

@@ -5,6 +5,7 @@ import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import {logoutUser } from '../../redux/actions/userActions'
+import cloud from '../../assets/cloud.png'
 function Navbar() {
     const navigate=useNavigate()
     const {user}=useSelector(state=>state.userReducer || {})
@@ -20,7 +21,11 @@ function Navbar() {
     }
   return (
     <div className="flex items-center justify-between p-4 text-gray-100 bg-slate-700" >
-        <h3 className="text-lg font-semibold">Cloud Storage</h3>
+
+      <div className='flex items-center space-x-4'>
+        <h3 className="text-xl font-semibold">Cloud Storage</h3>
+        <img className="w-10 h-10 " src={cloud} alt=""/>
+      </div>
                 
         <div className="flex items-center space-x-4" onClick={handleClick}>
           {

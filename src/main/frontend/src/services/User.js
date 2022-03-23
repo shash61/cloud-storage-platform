@@ -14,7 +14,8 @@ export async function registerUser(data) {
     console.log(res)
     return res;
   } catch (error) {
-    console.log(error.message);
+    console.log(error);
+    return error.message;
   }
 }
 
@@ -33,6 +34,6 @@ export async function login(data){
     console.log(res)
     return res;
   } catch (error) {
-    return error
+    return error.message
   }
 }

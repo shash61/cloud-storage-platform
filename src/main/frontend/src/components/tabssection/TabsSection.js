@@ -48,20 +48,39 @@ export default function BasicTabs() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', marginTop:'48px' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-        <Tab label="Files" {...a11yProps(0)} />
-        <Tab label="Credentials" {...a11yProps(1)} />
+        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example" sx={{
+                                "& .MuiTabs-indicator": {
+                                    backgroundColor: "#85C872",
+                                    borderBottomLeftRadius: "5%!important",
+                                    borderRadius: "16px",
+                                    borderBottomRightRadius: "5%",
+                                    borderBottom: "6px solid white",
+                                    color:'white'
+                                },
+                            }}>
+        <Tab label="Credentials" {...a11yProps(0)} sx={{
+                                    color:'white',
+                                    padding: "0.5rem",
+                                    margin: "0 1rem",
+                                    "&.Mui-selected": { fontWeight: "600", color:'white' },
+                                }}/>
+        <Tab label="Files" {...a11yProps(1)} sx={{
+                                    color:'white',
+                                    padding: "0.5rem",
+                                    margin: "0 1rem",
+                                    "&.Mui-selected": { fontWeight: "600", color:'white' },
+                                }}/>
         </Tabs>
       </Box>
       
       <TabPanel value={value} index={0}>
-        <FileTab/>
+        <CredentialsTab/>
       </TabPanel>
 
       <TabPanel value={value} index={1}>
-        <CredentialsTab/>
+        <FileTab/>
       </TabPanel>
 
     </Box>
