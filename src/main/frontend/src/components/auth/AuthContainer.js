@@ -59,18 +59,20 @@ export default function AuthContainer() {
                                     borderBottomLeftRadius: "5%!important",
                                     borderRadius: "16px",
                                     borderBottomRightRadius: "5%",
-                                    borderBottom: "6px solid #343b43",
+                                    borderBottom: "6px solid white",
+                                    color:'white'
                                 },
                             }}>
         <Tab label="SignUp" {...a11yProps(0)} sx={{
+                                    color:'white',
                                     padding: "0.5rem",
                                     margin: "0 1rem",
-                                    "&.Mui-selected": { fontWeight: "600", color:'gray' },
+                                    "&.Mui-selected": { fontWeight: "600", color:'white' },
                                 }} />
-        <Tab label="Login" sx={{
+        <Tab label="Login" sx={{    color:'white',
                                     padding: "0.5rem",
                                     margin: "0 1rem",
-                                    "&.Mui-selected": { fontWeight: "600", color:'gray' },
+                                    "&.Mui-selected": { fontWeight: "600", color:'white' },
                                 }} {...a11yProps(1)} />
         </Tabs>
       </Box>
